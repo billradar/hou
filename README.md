@@ -1,12 +1,16 @@
 # hou
 
-Bill 的个人主页，使用原生 HTML 和 CSS 构建，可直接通过 GitHub Pages 发布。
+Radar 的个人主页和项目索引，使用原生 HTML/CSS 编写，无需依赖安装或构建步骤。
+
+## 本地预览
+
+直接打开 `index.html`，或在仓库根目录运行任意静态文件服务器。
 
 ## 发布到 GitHub Pages
 
-1. 将本仓库推送到 GitHub 的 `billradar/hou`。
-2. 打开仓库的 **Settings → Pages**。
-3. 在 **Build and deployment** 中选择 **Deploy from a branch**，分支选 `main`、目录选 `/ (root)` 并保存。
-4. 等待 GitHub Pages 完成部署，访问 `https://billradar.github.io/hou/`。
+1. 打开仓库 **Settings → Pages**。
+2. 选择 **Deploy from a branch**。
+3. 分支选择 `master`，目录选择 `/ (root)`，然后保存。
+4. 部署完成后访问 `https://billradar.github.io/hou/`。
 
-主页内容位于 `index.html`，无需安装依赖或构建步骤。
+项目介绍集中在 `index.html` 的 Projects 区域。每个项目统一列出名称、仓库地址、简介、功能范围、技术标签和发布状态。
