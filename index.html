@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Bill 的个人主页，记录项目、想法和正在探索的方向。">
+  <title>Bill — 个人主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f2ec;
+      --ink: #20231f;
+      --muted: #777b72;
+      --line: #d9d8ce;
+      --green: #536d51;
+      --orange: #d47850;
+      --mono: "DM Mono", monospace;
+      --sans: "DM Sans", "Noto Sans SC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
+    .page { width: min(1080px, calc(100% - 64px)); margin: 0 auto; }
+    header {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark { font-size: 17px; font-weight: 700; letter-spacing: -.06em; }
+    .wordmark span { color: var(--orange); }
+    nav { display: flex; gap: 32px; color: var(--muted); font-size: 13px; }
+    nav a:hover, .text-link:hover { color: var(--orange); }
+    .hero {
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 48px;
+      padding: 80px 0 92px;
+    }
+    .eyebrow, .section-label, .project-index {
+      font: 11px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .eyebrow { display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--orange); }
+    h1 {
+      margin: 25px 0 20px;
+      font-size: clamp(58px, 9vw, 104px);
+      line-height: .98;
+      letter-spacing: -.085em;
+      font-weight: 600;
+    }
+    h1 .period { color: var(--orange); }
+    .intro { max-width: 470px; color: #666a62; font-size: 16px; line-height: 1.9; }
+    .hero-links { display: flex; align-items: center; gap: 24px; margin-top: 34px; font-size: 13px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding: 13px 17px;
+      background: var(--ink);
+      color: var(--paper);
+      transition: background .2s ease;
+    }
+    .button:hover { background: var(--green); }
+    .button span { font-size: 17px; line-height: 10px; }
+    .text-link { color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+    .orbit {
+      justify-self: end;
+      position: relative;
+      width: min(100%, 330px);
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid var(--line); border-radius: 50%; }
+    .orbit::before { inset: 13%; }
+    .orbit::after { inset: 29%; border-color: #c3c9b8; }
+    .orbit-core {
+      width: 104px;
+      height: 104px;
+      z-index: 1;
+      border-radius: 50%;
+      background: var(--green);
+      color: #f5f2e9;
+      display: grid;
+      place-items: center;
+      font: 25px var(--mono);
+      letter-spacing: -.08em;
+    }
+    .orbit-dot { position: absolute; z-index: 2; width: 11px; height: 11px; background: var(--orange); border-radius: 50%; top: 14%; right: 25%; box-shadow: 0 0 0 6px var(--paper); }
+    .orbit-note { position: absolute; right: -10px; bottom: 17%; font: 10px var(--mono); color: var(--muted); transform: rotate(-90deg) translateX(100%); transform-origin: right bottom; letter-spacing: .08em; }
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      padding: 42px 0 74px;
+      border-top: 1px solid var(--line);
+    }
+    .section-label { padding-top: 8px; }
+    .about-copy { max-width: 620px; }
+    .about-copy h2 { margin: 0 0 18px; font-size: 24px; letter-spacing: -.045em; font-weight: 500; }
+    .about-copy p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .work { padding: 32px 0 72px; border-top: 1px solid var(--line); }
+    .work-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 25px; }
+    .work-heading h2 { margin: 0; font-size: 24px; letter-spacing: -.05em; font-weight: 500; }
+    .work-heading span { color: var(--muted); font: 11px var(--mono); }
+    .project {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 23px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .project-index { color: var(--orange); }
+    .project h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; }
+    .project p { margin: 0; color: var(--muted); font-size: 13px; }
+    .project-arrow { font-size: 20px; color: var(--green); transition: transform .2s ease; }
+    .project:hover .project-arrow { transform: translate(3px, -3px); }
+    footer {
+      min-height: 92px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    footer .seal { font: 10px var(--mono); letter-spacing: .03em; }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 40px, 520px); }
+      header { height: 70px; }
+      nav { gap: 18px; font-size: 12px; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 52px; padding: 74px 0 70px; }
+      h1 { font-size: clamp(62px, 17vw, 88px); }
+      .intro { font-size: 15px; }
+      .orbit { justify-self: center; width: min(76vw, 290px); }
+      .about { grid-template-columns: 1fr; gap: 20px; padding: 32px 0 54px; }
+      .about-copy h2 { font-size: 21px; }
+      .project { grid-template-columns: 35px 1fr auto; gap: 12px; }
+      .project p { line-height: 1.6; }
+      footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; padding: 20px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="wordmark" href="#top" aria-label="Bill 首页">b<span>.</span></a>
+      <nav aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#work">项目</a>
+        <a href="https://github.com/billradar" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <div class="eyebrow">PERSONAL CORNER · BILLRADAR</div>
+          <h1 id="hero-title">Hello,<br>I'm Bill<span class="period">.</span></h1>
+          <p class="intro">欢迎来到我的小小互联网角落。这里放一些我做过的东西、感兴趣的方向，以及沿途留下的记录。</p>
+          <div class="hero-links">
+            <a class="button" href="#work">看看我的项目 <span>↘</span></a>
+            <a class="text-link" href="https://github.com/billradar" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="orbit" aria-hidden="true">
+          <span class="orbit-dot"></span>
+          <div class="orbit-core">b.</div>
+          <span class="orbit-note">A PLACE TO KEEP MAKING</span>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="section-label">01 / ABOUT</div>
+        <div class="about-copy">
+          <h2 id="about-title">关于这里</h2>
+          <p>这是一个持续生长的个人主页。比起完整的履历，我更想把它当作一个轻巧的入口：让你找到我的项目，也给未来的想法留一点空间。</p>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <div class="work-heading">
+          <h2 id="work-title">项目与角落</h2>
+          <span>SELECTED LINKS · 01</span>
+        </div>
+        <a class="project" href="https://github.com/billradar/hou" target="_blank" rel="noreferrer">
+          <span class="project-index">01</span>
+          <div>
+            <h3>hou</h3>
+            <p>从最初的仓库开始，给想法留个位置。</p>
+          </div>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year">2026</span> Bill · 用好奇心搭建</span>
+      <span class="seal">❄ ARCTIC CODE VAULT CONTRIBUTOR</span>
+    </footer>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
